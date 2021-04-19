@@ -1,4 +1,4 @@
-# mood
+# Mood Tjänsten
 Mood-tjänsten ska användas för att rapportera en användares humör till systemet. Den kommer att använda en REST API för kommunikation mellan klient och server.
 ## REST API
 Det finns egentligen en viktig endpoint, `POST /mood`. Den är beskriven nedan.
