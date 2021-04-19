@@ -16,8 +16,11 @@ Se till att `mood` är mellan `1` och `5`.
 Vid en lyckad rapportering ska ett event skickas till RabbitMQ. Eventet ska skickas till kön `moods` och bör innehålla följande data.
 ```
 {
-  "mood": Integer,
-  "tags": []string
+  "type": "created",
+  "payload": {
+    "mood": Integer,
+    "tags": []string 
+  }
 }
 ```
 *För att göra ändringar i detta eller andra repositories för Bee Well, vänligen utveckla på en separat branch och skapa en PR till main branchen då CI/CD är aktiverat så fungerande kod måste alltid befinna sig på main*
