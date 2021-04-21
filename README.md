@@ -19,7 +19,8 @@ Vid en lyckad rapportering ska ett event skickas till RabbitMQ. Eventet ska skic
   "type": "created",
   "payload": {
     "mood": Integer,
-    "tags": []string 
+    "tags": []string,
+    "reported": Date
   }
 }
 ```
