@@ -1,0 +1,26 @@
+{
+  "name": "mood",
+  "version": "1.0.0",
+  "description": "Mood-tjänsten ska användas för att rapportera en användares humör till systemet. Den kommer att använda en REST API för kommunikation mellan klient och server. ## REST API Det finns egentligen en viktig endpoint, `POST /mood`. Den är beskriven nedan. ### POST /mood #### Body data ``` {   \"mood\": Integer,   \"tags\": []string } ``` #### Validation Se till att `mood` är mellan `1` och `5`. #### MQ Vid en lyckad rapportering ska ett event skickas till RabbitMQ. Eventet ska skickas till kön `moods` och bör innehålla följande data. ``` {   \"type\": \"created\",   \"payload\": {     \"mood\": Integer,     \"tags\": []string    } } ``` *För att göra ändringar i detta eller andra repositories för Bee Well, vänligen utveckla på en separat branch och skapa en PR till main branchen då CI/CD är aktiverat så fungerande kod måste alltid befinna sig på main*",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bee-well/mood.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bee-well/mood/issues"
+  },
+  "homepage": "https://github.com/bee-well/mood#readme"
+}
