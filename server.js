@@ -1,14 +1,13 @@
 var express = require('express')
+const {json} = require('body-parser')
 const mongoose = require("mongoose");
 var app = express()
+app.use(json())
+const reportMoodController = require("./controllers/mood-controllers")
+app.use(reportMoodController)
 
 const serverPort = process.env.PORT || 3000
 
-app.get('/moods', function (req, res) {
-
-	console.log(req.query);
-	res.send("Response sent");
-})
 const start = async () => {
     let i
     while (i < 3) {

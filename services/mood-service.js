@@ -1,21 +1,21 @@
-const mood = require ('../modal/moods');
+const Mood = require ('../modal/moods');
 
     const createMood = async (mood, tags, user) => {
       console.log("updateting mood"); 
     
       try{
-          const insertedMood = new Mood ({
+          const insertedMood = new Mood({
               user, 
               mood, 
-              tags, 
+              tags
           }); 
-          await insertedMood.save; 
+          await insertedMood.save()
       }
       catch (error) {
-          console.log(error);
-          return res.status(500).send();
+          console.log(error)
+          throw new Error("could not save mood in database")
+    
       }
-      return res.status(200).send(); 
     }
 
 module.exports.createMood = createMood; 
