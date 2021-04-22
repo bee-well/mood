@@ -26,3 +26,6 @@ Vid en lyckad rapportering ska ett event skickas till RabbitMQ. Eventet ska skic
 }
 ```
 *För att göra ändringar i detta eller andra repositories för Bee Well, vänligen utveckla på en separat branch och skapa en PR till main branchen då CI/CD är aktiverat så fungerande kod måste alltid befinna sig på main*
+
+#### Köra mot docker
+docker-compose up --build

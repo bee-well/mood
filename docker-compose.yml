@@ -1,0 +1,24 @@
+version: "3.9"
+services: 
+    mq:
+        image: "rabbitmq:alpine"
+        ports: 
+            - "5672:5672"
+    mongo:
+        image: "mongo"
+        ports:
+            - "27017:27017"
+    web:
+        build:
+            context: .
+            dockerfile: dev.Dockerfile
+        ports:
+            - "3000:3000"
+        environment:
+            PORT: 3000
+            APP_ENVIRONMENT: dev
+            MQ_CONNECTION_URL: amqp://mq:5672 
+            MONGO_CONNECTION_URL: mongodb://mongo:27017/moods
+            JWT_KEY: secret_key
+        depends_on:
+            - mq
