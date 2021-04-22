@@ -1,23 +1,21 @@
 const mood = require ('../modal/moods');
 
-    const createMood = async (mood, tags) => {
-        m = new Mood(mood, tags)
-        try {
-          await m.Save()
-        } catch (err) {
-          console.log(err);
-        }
-      },
-      
-    const createTag = async (mood, tags) => {
-        t = new Tag(mood, tags)
-        try {
-          await t.Save()
-        } catch (err) {
-          console.log(err);
-        }
+    const createMood = async (mood, tags, user) => {
+      console.log("updateting mood"); 
+    
+      try{
+          const insertedMood = new Mood ({
+              user, 
+              mood, 
+              tags, 
+          }); 
+          await insertedMood.save; 
       }
-      
+      catch (error) {
+          console.log(error);
+          return res.status(500).send();
+      }
+      return res.status(200).send(); 
+    }
 
-module.exports.createMood = createMood
-module.exports.createTag = createTag
+module.exports.createMood = createMood; 
