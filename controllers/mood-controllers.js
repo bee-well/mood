@@ -11,7 +11,7 @@ router.post("/moods",protected, async (req, res) => {
         return res.status(400).send("missing body for moods")
     }
     if (req.body.mood > 0 && req.body.mood <= 5) {
-        Mood.createMood(req.body.mood, req.body.tags,req.body.user)
+        Mood.createMood(req.body.mood, req.body.tags,req.user.id)
         return res.status(201).end()
         
     }

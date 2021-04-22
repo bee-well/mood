@@ -9,15 +9,17 @@ const createMood = async (mood, tags, user) => {
             tags
         }); 
         await insertedMood.save()
-        await publish("moods", JSON.stringify({
+        const event = {
             type: "created",
             payload: {
-                user: insertedMood.user,
+                user,
                 mood: insertedMood.mood,
                 tags: insertedMood.tags,
                 reported: insertedMood.createdAt
             }
-        }))
+        }
+        console.log(event)
+        await publish("moods", JSON.stringify(event))
     } catch (error) {
         throw error
     }   
