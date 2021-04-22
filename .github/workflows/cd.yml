@@ -1,0 +1,37 @@
+name: CD
+ 
+on:
+  push:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create Dockerfile
+        run: |
+          touch Dockerfile
+          cat >>./Dockerfile <<END
+            FROM node:alpine
+            WORKDIR app
+            ENV APP_ENVIRONMENT=prod
+            ENV MONGO_CONNECTION_URL=$MONGO_CONN
+            ENV MQ_CONNECTION_URL=$MQ_CONN
+            ENV JWT_KEY=$JWT_KEY
+            COPY . .
+            RUN npm install
+            CMD ["npm", "start"]
+          END
+        env:
+          MQ_CONN: ${{ secrets.MQ_CONNECTION_URL }}
+          MONGO_CONN: ${{ secrets.MONGO_CONNECTION_URL }}
+          JWT_KEY: ${{ secrets.JWT_KEY }}
+      - uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "bw-moods"
+          heroku_email: ${{ secrets.HEROKU_EMAIL }}
+          usedocker: true
