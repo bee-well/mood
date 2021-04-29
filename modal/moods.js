@@ -5,6 +5,19 @@ const moodSchema = new Schema({
     user: Number,
     mood: Number,
     tags: [String]
- }, { timestamps: true}
- );
-module.exports = mongoose.model("Mood", moodSchema)
+}, { timestamps: true}
+);
+
+const config = {
+   model: null
+}
+
+const createModel = () => {
+    if(!config.model){
+       config.model = mongoose.model("mood", moodSchema)
+    }
+    return config.model
+}
+
+module.exports = createModel
+module.exports.config = config

@@ -7,12 +7,14 @@
     "amqplib": "^0.7.1",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
+    "jest": "^26.6.3",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.12.5",
-    "node.js": "*"
+    "mongoose": "^5.12.6",
+    "node.js": "*",
+    "test": "^0.6.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "node server.js"
   },
   "repository": {
@@ -25,5 +27,9 @@
   "bugs": {
     "url": "https://github.com/bee-well/mood/issues"
   },
-  "homepage": "https://github.com/bee-well/mood#readme"
+  "homepage": "https://github.com/bee-well/mood#readme",
+  "devDependencies": {
+    "mocha": "^8.3.2",
+    "three": "^0.128.0"
+  }
 }

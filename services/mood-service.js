@@ -1,14 +1,15 @@
-const Mood = require ('../modal/moods');
+const createMoodDao = require ('../modal/moods');
 const {publish} = require("../mq/mq")
 
 const createMood = async (mood, tags, user) => {
     try{
-        const insertedMood = new Mood({
+        const model = createMoodDao()
+        const insertedMood = new model({
             user, 
             mood, 
             tags
         }); 
-        await insertedMood.save()
+        await insertedMood.save() //ska testas
         const event = {
             type: "created",
             payload: {
@@ -18,8 +19,8 @@ const createMood = async (mood, tags, user) => {
                 reported: insertedMood.createdAt
             }
         }
-        console.log(event)
-        await publish("moods", JSON.stringify(event))
+        
+        await publish("moods", JSON.stringify(event)) //ska testas
     } catch (error) {
         throw error
     }   
