@@ -1,9 +1,10 @@
 var express = require('express')
 const {json} = require('body-parser')
 const mongoose = require("mongoose");
-const {connect} = require("./mq/mq")
+const cors = require("cors")
 var app = express()
 app.use(json())
+app.use(cors())
 const reportMoodController = require("./controllers/mood-controllers")
 app.use(reportMoodController)
 
