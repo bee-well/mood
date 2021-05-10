@@ -4,12 +4,14 @@ const {publish} = require("../mq/mq")
 const createMood = async (mood, tags, user) => {
     try{
         const model = createMoodDao()
+        const createdAt = new Date()
         const insertedMood = new model({
             user, 
             mood, 
-            tags
+            tags,
+            createdAt
         }); 
-        await insertedMood.save() //ska testas
+        await insertedMood.save()
         const event = {
             type: "created",
             payload: {
@@ -20,7 +22,7 @@ const createMood = async (mood, tags, user) => {
             }
         }
         
-        await publish("moods", JSON.stringify(event)) //ska testas
+        await publish("moods", JSON.stringify(event))
     } catch (error) {
         throw error
     }   
