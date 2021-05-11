@@ -22,7 +22,7 @@ Moongose databas sparar endast från Mood sidan. Innehåller följande data:
 #### Validation
 Se till att `mood` är mellan `1` och `5`.
 #### MQ
-Vid en lyckad rapportering ska ett event skickas till RabbitMQ. Eventet ska skickas till kön `moods` och bör innehålla följande data.
+Vid en lyckad rapportering skickas ett event till RabbitMQ. Eventet skickas till kön `moods` och innehåller följande data.
 ```
 {
   "type": "created",
