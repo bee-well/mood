@@ -12,12 +12,13 @@ Det finns egentligen en viktig endpoint, `POST /mood`. Den är beskriven nedan.
 ```
 #### Databas
 Moongose databas sparar endast från Mood sidan. Innehåller följande data:
+```
 {
     user: Number,
     mood: Number,
     tags: [String]
 }, { timestamps: true}
-
+```
 #### Validation
 Se till att `mood` är mellan `1` och `5`.
 #### MQ
