@@ -10,6 +10,14 @@ Det finns egentligen en viktig endpoint, `POST /mood`. Den är beskriven nedan.
   "tags": []string
 }
 ```
+#### Databas
+Moongose databas sparar endast från Mood sidan. Innehåller följande data:
+{
+    user: Number,
+    mood: Number,
+    tags: [String]
+}, { timestamps: true}
+
 #### Validation
 Se till att `mood` är mellan `1` och `5`.
 #### MQ
@@ -29,3 +37,12 @@ Vid en lyckad rapportering ska ett event skickas till RabbitMQ. Eventet ska skic
 
 #### Köra mot docker
 docker-compose up --build
+
+#### __TEST__
+Automatiska tester mood, att det har skapats rätt och sparats rätt. Mockar data för att se att det stämmer överens med datan som sparas. 
+
+
+
+
+
+
